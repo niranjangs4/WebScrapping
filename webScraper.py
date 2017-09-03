@@ -4,7 +4,7 @@ import pandas as pd
 import re
 import matplotlib.pyplot as plt
 
-
+### this is not complete code
 class Webscraper:
 	def __init__(self, url):
 		self.url = url
@@ -21,17 +21,14 @@ class Webscraper:
 		cities = soup.find_all("div", class_="col-md-12 activities-and-listings")
 		states = list([self.url + state.get('href') + '/things-to-do' for i in states for state in
 		               i.find_all('a', href=re.compile('^/states/'))])
-		cities = list([self.url + city.get('href') + '/things-to-do' for i in cities for city in
-		               i.find_all('a', href=re.compile('^/cities/'))])
 		all_links = []
-
 		for each_state in cities, states:
 			for all_place in each_state:
 				all_links.append(all_place)
 				file = all_place.split('/')[-2]
 				f1.write(str(all_place + '\r\n'))
-				f2 = open(file + '-links-things-to-do.txt', 'w')
-				f3 = open(file + '-links-with-category-and-count.txt', 'w')
+				f2 = open('-links-things-to-do.txt', 'w')
+				f3 = open('-links-with-category-and-count.txt', 'w')
 
 				print("current page " + all_place)
 
@@ -46,9 +43,8 @@ class Webscraper:
 					f3.write(str(catogary_href) + '\r\n')
 					tags_each_place = self.url + catogary_href.find('a').get('href')
 					f2.write(str(tags_each_place + '\r\n'))
-					category = catogary_href.text.split('(')[0]
 					activity.append(category)
-					count_places = catogary_href.text.split(' ')[-1].split('(')[-1].split(')')[0]
+					count_places = catogary_href.text.split(' ')[-1].split('(')[-1].split(')
 					countplace.append(int(count_places))
 					city = tags_each_place.split('/')[4].replace('-', ' ').title()
 					each_tags = get(tags_each_place)
@@ -63,7 +59,6 @@ class Webscraper:
 						if "Featured" not in place:
 							brought = place_details.find("span", class_="sold")
 							if brought != None:
-								brought_co = brought.text.split(':')[-1]
 								brought_count.append(int(brought_co))
 
 					total_bot.append(sum(brought_count))
@@ -73,7 +68,7 @@ class Webscraper:
 					if total_bot[i] == 0:
 						total_bot[i] = 1
 
-				dataset = list(zip(activity, countplace, total_bot))
+				dataset = list((activity, countplace, total_bot))
 				df = pd.DataFrame(data=dataset, columns=['Activities', 'Total_Count', 'Total_Bought'])
 
 				df['efficieny'] = 100 * (df['Total_Bought'] - df['Total_Count']) / df['Total_Bought']
@@ -88,6 +83,6 @@ class Webscraper:
 				plt.clf()
 				df.to_csv(city+".csv")
 				print("\n")
-Webscraper("https://www.thrillophilia.com")
+Webscraper("===============")
 
 
