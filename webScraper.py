@@ -1,7 +1,7 @@
 # Developed By : NIRANJAN KUMAR G S 
 # From : INDIA
 # Email : niranjan4@outlook.in
-# Updated date : 12/sec/2017
+# Updated date : 12/sep/2017
 
 
 from requests import get
