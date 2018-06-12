@@ -45,7 +45,7 @@ python Filename
 
 ## Authors
 
-* **Niranjan Kumar G S** - *Complete work* - [Guithub](https://github.com/niranjangs4)
+* **Niranjan Kumar G S** - *Complete work* - [Github](https://github.com/niranjangs4)
 * **Email : niranjan4@outlook.in**
 
 
